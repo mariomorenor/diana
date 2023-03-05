@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+    <record id="view_res_company_settings_form" model="ir.ui.view">
+      <field name="name">account.res.company.setting.form</field>
+      <field name="model">res.company</field>
+      <field name="inherit_id" ref="base.view_company_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='vat']" position="after">
+            <field name="agente_retencion"/>
+            <field name="val_agente_retencion" placeholder="Código Autorizado" attrs="{'invisible': [('agente_retencion','!=',True)]}"/>
+             <field name="is_special_taxpayer"/>
+        </xpath>
+        <xpath expr="//field[@name='street']" position="attributes">
+            <attribute name="required">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='email']" position="attributes">
+            <attribute name="required">1</attribute>
+        </xpath>
+      </field>
+    </record>
+</data>
+</odoo>

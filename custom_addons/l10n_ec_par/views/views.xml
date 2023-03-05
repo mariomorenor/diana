@@ -1,0 +1,115 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+        <record id="lec_taxidtype_list" model="ir.ui.view">
+            <field name="name">tax_id_tree</field>
+            <field name="model">lec.taxid.type</field>
+            <field name="arch" type="xml">
+                <tree string="Tax ID Type" multi_edit="1">
+                    <field name="code"/>
+                    <field name="name"/>
+                  <field name="min_length"/>
+                  <field name="max_length"/>
+                </tree>
+            </field>
+        </record>
+
+    <record id="lec_taxpayertype_list" model="ir.ui.view">
+            <field name="name">taxpayer_tree</field>
+            <field name="model">lec.taxpayer.type</field>
+            <field name="arch" type="xml">
+                <tree string="TaxPayer Type" multi_edit="1">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+    <!-- Forms view -->
+
+      <!-- tax id type form views  -->
+        <record id="taxidtype_view_form" model="ir.ui.view">
+            <field name="name">Tax ID Type</field>
+            <field name="model">lec.taxid.type</field>
+            <field name="arch" type="xml">
+                <form string="Tax ID Type">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" string="Tax ID Type" class="oe_edit_only"/>
+                            <h1><field name="name" string="Tax ID Type" placeholder="Tax ID Type"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                                <field name="min_length"/>
+                                <field name="max_length"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    <!-- taxpayer type form views  -->
+        <record id="taxpayertype_view_form" model="ir.ui.view">
+            <field name="name">TaxPayer Type</field>
+            <field name="model">lec.taxpayer.type</field>
+            <field name="arch" type="xml">
+                <form string="TaxPayer Type">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" string="Tax Payer Type" class="oe_edit_only"/>
+                            <h1><field name="name" string="Tax Payer Type" placeholder="Tax Payer Type"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+      
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="taxidtype_action_window">
+      <field name="name">Tax ID Type</field>
+      <field name="res_model">lec.taxid.type</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="taxpayertype_action_window">
+      <field name="name">Tax Payer Type</field>
+      <field name="res_model">lec.taxpayer.type</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+    <record id="odoo_lecmenu_root" model="ir.ui.menu">
+            <field name="action" eval="False"/>
+            <field name="active" eval="True"/>
+            <field name="groups_id" eval="[(6, 0, [])]"/>
+            <field name="name">Ecuador Localization</field>
+            <field name="parent_id" eval="False"/>
+            <field name="sequence">10</field>
+            <!--<field name="web_icon">fa fa-map-marker,#FFFFFF,#34495e</field>-->
+    </record>
+    <!-- Top menu item -->
+
+    <menuitem name="Ecuador Localization" id="odoo_lecmenu_root" web_icon="l10n_ec_par,static/description/icon.png"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Master Data" id="odoo-lecmenu_1" parent="odoo_lecmenu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="TaxID Type" id="odoo-lecmenu_1_list" parent="odoo-lecmenu_1"
+              action="taxidtype_action_window" groups="l10n_ec_par.user_supervisor"/>
+
+    <menuitem name="Tax Payer Type" id="odoo-lec_2_list" parent="odoo-lecmenu_1"
+              action="taxpayertype_action_window" groups="l10n_ec_par.user_supervisor"/>
+  </data>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+    <record id="email_template_enotacredito" model="mail.template">
+      <field name="name">Send eNotaCredito</field>
+      <field name="email_from">${('noresponder@sample.com')|safe}</field>
+      <field name="subject">NOTA CREDITO ELECTRONICA ${object.company_id.name}</field>
+      <field name="partner_to">${object.partner_id.id}</field>
+      <field name="model_id" ref="account.model_account_move"/>
+      <field name="auto_delete" eval="True"/>
+      <field name="report_template" ref="l10n_ec_reports.account_notacreditos"/>
+      <field name="report_name">NOTACREDITO_${(object.name or '').replace('/','_')}</field>
+      <field name="lang">${object.partner_id.lang}</field>
+      <field name="body_html"><![CDATA[
+      Estimad@ ${ object.partner_id.name },
+
+      adjunto encontrará su nota de credito electrónica número ${ object.name }, con fecha
+      de emisión ${ object.invoice_date } por un total de ${ object.amount_total }.
+
+      ]]>
+      </field>
+    </record>
+  </data>
+</openerp>

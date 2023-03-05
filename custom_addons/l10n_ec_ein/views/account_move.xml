@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_move_ei_form" model="ir.ui.view">
+          <field name="name">account.move.ei.form</field>
+          <field name="model">account.move</field>
+          <field name="inherit_id" ref="account.view_move_form"/>
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="attributes">
+                <attribute name="string">Referencia Factura</attribute>
+                <attribute name="placeholder">001001000000001</attribute>
+                <attribute name="attrs">{'invisible': [('is_liquidation', '=', True)], 'required': [('type', 'in', ('in_invoice', 'in_refund')),(('is_liquidation', '=', False))]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='ref']" position="after">                                               
+                <field name="auth_number_prov" placeholder="0000000000000000000000000000000000000000000000000" attrs="{'invisible': ['|',('type', 'in', ('out_invoice', 'out_refund')),(('is_liquidation', '=', True))], 'required': [('type', 'in', ('in_invoice', 'in_refund')),('is_liquidation', '=', False)]}"/>
+                <field name="sri_authorization_date" invisible="1"/>
+                <field name="is_liquidation" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='journal_id']" position="replace">
+                <field name="journal_id"/>
+                <field name="sri_payment_type"  attrs="{'invisible': [('type', '=', 'in_invoice')]}"/>
+                <field name="sri_authorization" readonly="1" attrs="{'invisible': [('type', 'in', ('in_invoice', 'in_refund'))]}"/>
+            </xpath>
+            <xpath expr="//button[@name='button_draft']" position="after">
+                  <button string="Process Electronic Invoice"
+                            type="object"
+                            name="action_generate_einvoice"
+                            class="oe_highlight"
+                            attrs="{'invisible': ['|', '|', ('sri_authorization', '!=', False),
+                            ('state', 'in', ['draft']), ('type', 'in', ('in_invoice', 'in_refund','liq_purchase'))]}"/>
+                            
+                  <button string="Generar Nota Debito Electronica"
+                            type="object"
+                            name="action_generate_edebit"
+                            class="oe_highlight"
+                            attrs="{'invisible': ['|', '|', ('sri_authorization', '!=', False),
+                            ('state', 'in', ['draft']), ('type', 'in', ('in_invoice', 'in_refund','liq_purchase'))]}"/>
+                            
+                  <button string="Generar Liquidacion Electronica"
+                            type="object"
+                            name="action_generate_eliquidacion"
+                            class="oe_highlight"
+                            attrs="{'invisible': ['|', '|', ('sri_authorization', '!=', False),
+                            ('state', 'in', ['draft']), ('type', 'in', ('in_invoice', 'in_refund','out_invoice','out_refund'))]}"/>
+                  <button string="Enviar Cliente"
+                            type="object"
+                            name="action_send_cliente"
+                            class="oe_highlight"
+                            attrs="{'invisible': ['|', ('sri_authorization', '==', False), ('state', 'in', ['draft'])]}"/>
+                            
+                  <!-- <button string="Agregar Retencion" -->
+                            <!-- type="object" -->
+                            <!-- name="add_retention" -->
+                            <!-- class="oe_highlight" -->
+                            <!-- attrs="{'invisible': ['|', ('has_retention', '=', True), ('state', 'in', ['draft'])]}"/> -->
+                  <!-- <field name="has_retention" invisible="1"/> -->
+            </xpath>
+            <xpath expr="//button[@name='action_invoice_sent']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+          </field>
+        </record>
+        
+        <record id="view_account_move_liquidation_form" model="ir.ui.view">
+          <field name="name">account.move.liquidation.form</field>
+          <field name="model">account.move</field>
+          <field name="inherit_id" ref="account.view_move_form"/>
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="attrs">{'visible': [('type', 'in', ('liq_purchase'))]}</attribute>
+            </xpath>
+          </field>
+        </record>
+        
+        
+        
+        <record id="account.action_move_in_invoice_type" model="ir.actions.act_window">
+            <field name="name">Bills</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_id" ref="account.view_invoice_tree"/>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+            <field name="domain">[('type', 'in', ['in_invoice','liq_purchase'])]</field>
+            <field name="context">{'default_type': 'in_invoice'}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a vendor bill
+              </p><p>
+                Create invoices, register payments and keep track of the discussions with your vendors.
+              </p>
+            </field>
+        </record>
+        
+        
+        <record id="view_account_invoice__liquidation_filter" model="ir.ui.view">
+            <field name="name">account.invoice.select</field>
+            <field name="model">account.move</field>
+            <field name="arch" type="xml">
+                <search string="Search Invoice">
+                    <field name="name" string="Invoice"
+                           filter_domain="[
+                                '|', '|' , '|', '|',
+                                ('name', 'ilike', self), ('invoice_origin', 'ilike', self),
+                                ('ref', 'ilike', self), ('invoice_payment_ref', 'ilike', self),
+                                ('partner_id', 'child_of', self)]"/>
+                    <field name="journal_id"/>
+                    <field name="partner_id" operator="child_of"/>
+                    <field name="invoice_user_id" string="Salesperson" domain="[('share', '=', False)]"/>
+                    <field name="date" string="Period"/>
+                    <filter domain="[('invoice_user_id', '=', uid)]" name="myinvoices" help="My Invoices"/>
+                    <separator/>
+                    <filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+                    <filter name="posted" string="Posted" domain="[('state', '=', 'posted')]"/>
+                    <filter name="cancel" string="Cancelled" domain="[('state', '=', 'cancel')]"/>
+                    <separator/>
+                    <filter name="in_payment" string="In Payment" domain="[('invoice_payment_state', '=', 'in_payment'), ('state', '=', 'posted')]"/>
+                    <filter name="paid" string="Paid" domain="[('invoice_payment_state', '=', 'paid'), ('state', '=', 'posted')]"/>
+                    <filter name="unpaid" string="Not Paid" domain="[('invoice_payment_state', '=', 'not_paid'), ('state', '=', 'posted')]"/>
+                    <filter name="late" string="Overdue" domain="['&amp;', ('invoice_date_due', '&lt;', time.strftime('%%Y-%%m-%%d')), ('state', '=', 'posted'), ('invoice_payment_state', '=', 'not_paid')]" help="Overdue invoices, maturity date passed"/>
+                    <separator/>
+                    <filter name="invoice_date" string="Invoice Date" date="invoice_date"/>
+                    <filter name="due_date" string="Due Date" date="invoice_date_due"/>
+                    <separator/>
+                    <filter invisible="1" string="Late Activities" name="activities_overdue"
+                        domain="[('activity_ids.date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                        help="Show all records which has next action date is before today"/>
+                    <filter invisible="1" string="Today Activities" name="activities_today"
+                        domain="[('activity_ids.date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter invisible="1" string="Future Activities" name="activities_upcoming_all"
+                        domain="[('activity_ids.date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Salesperson" name="salesperson" context="{'group_by':'invoice_user_id'}"/>
+                        <filter name="status" string="Status" context="{'group_by':'state'}"/>
+                        <separator/>
+                        <filter string="Invoice Date" name="invoicedate" context="{'group_by': 'invoice_date'}"/>
+                        <filter string="Due Date" name="duedate" context="{'group_by': 'invoice_date_due'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+        
+        <record id="action_move_liquidation_type" model="ir.actions.act_window">
+            <field name="name">Liquidaciones Compra</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_id" ref="account.view_invoice_tree"/>
+            <field name="search_view_id" ref="view_account_invoice__liquidation_filter"/>
+            <field name="domain">[('type', '=', 'liq_purchase')]</field>
+            <field name="context">{'default_type': 'liq_purchase'}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Liquidaciones Compra
+              </p><p>
+                Create invoices, register payments and keep track of the discussions with your customers.
+              </p>
+            </field>
+        </record>
+    </data>
+</odoo>

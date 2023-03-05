@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+          <record id="view_res_company_ei_form" model="ir.ui.view">
+          <field name="name">account.res.company.ei.form</field>
+          <field name="model">res.company</field>
+          <field name="inherit_id" ref="base.view_company_form"/>
+          <field name="arch" type="xml">
+            <notebook position="inside">
+              <page string="Electronic Documents">
+                <groups>
+                  <group>
+                    <field name="env_service"/>
+                    <field name="is_force_keep_accounting"/>
+                    <field name="is_special_taxpayer" invisible="1"/>
+                  </group>
+                </groups>
+              </page>
+            </notebook>
+          </field>
+        </record>
+    </data>
+</odoo>

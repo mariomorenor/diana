@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- SRI Error Code-->
+        <record id="error1" model="sri.errorcode">
+            <field name="code">2</field>
+            <field name="name">RUC del emisor se encuentra NO ACTIVO</field>
+        </record>
+
+        <!-- SRI Parameters-->
+        <record id="parameters1" model="sri.parameters">
+            <field name="site_base_test">https://celcer.sri.gob.ec/</field>
+            <field name="ws_test_url">https://celcer.sri.gob.ec/comprobantes-electronicos-ws/AutorizacionComprobantesOffline?wsdl</field>
+            <field name="ws_test_auth">https://celcer.sri.gob.ec/comprobantes-electronicos-ws/AutorizacionComprobantesOffline?wsdl</field>
+            <field name="site_base_prod">https://cel.sri.gob.ec/</field>
+            <field name="ws_prod_url">https://cel.sri.gob.ec/comprobantes-electronicos-ws/RecepcionComprobantesOffline?wsdl</field>
+            <field name="ws_prod_auth">https://cel.sri.gob.ec/comprobantes-electronicos-ws/AutorizacionComprobantesOffline?wsdl</field>
+            <field name="ws_prod_auth">https://cel.sri.gob.ec/comprobantes-electronicos-ws/AutorizacionComprobantesOffline?wsdl</field>
+        </record>
+
+        <!-- SRI Payment Type-->
+        <record id="paymentType1" model="sri.payment_type">
+            <field name="code">01</field>
+            <field name="name">Sin utilización del sistema financiero</field>
+            <field name="start_date">2013-01-01</field>
+        </record>
+
+        <record id="paymentType2" model="sri.payment_type">
+            <field name="code">15</field>
+            <field name="name">Compensación de deudas</field>
+            <field name="start_date">2013-01-01</field>
+        </record>
+
+        <record id="paymentType3" model="sri.payment_type">
+            <field name="code">16</field>
+            <field name="name">Tarjeta de débito</field>
+            <field name="start_date">2016-06-01</field>
+        </record>
+
+        <record id="paymentType4" model="sri.payment_type">
+            <field name="code">17</field>
+            <field name="name">Dinero electrónico</field>
+            <field name="start_date">2016-06-01</field>
+        </record>
+
+        <record id="paymentType5" model="sri.payment_type">
+            <field name="code">18</field>
+            <field name="name">Tarjeta prepago</field>
+            <field name="start_date">2016-06-01</field>
+        </record>
+
+        <record id="paymentType6" model="sri.payment_type">
+            <field name="code">19</field>
+            <field name="name">Tarjeta de crédito</field>
+            <field name="start_date">2016-06-01</field>
+        </record>
+
+        <record id="paymentType7" model="sri.payment_type">
+            <field name="code">20</field>
+            <field name="name">Otros con utilización del sistema financiero</field>
+            <field name="start_date">2016-06-01</field>
+        </record>
+
+        <record id="paymentType8" model="sri.payment_type">
+            <field name="code">21</field>
+            <field name="name">Endoso de títulos</field>
+            <field name="start_date">2016-06-01</field>
+        </record>
+
+    </data>
+</odoo>

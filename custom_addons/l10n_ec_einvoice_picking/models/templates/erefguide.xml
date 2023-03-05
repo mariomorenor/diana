@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<guiaRemision id="comprobante" version="1.0.0">
+  <infoTributaria>
+    <ambiente>{{ ambiente }}</ambiente>
+    <tipoEmision>{{ tipoEmision }}</tipoEmision>
+    <razonSocial>{{ razonSocial }}</razonSocial>
+    <nombreComercial>{{ nombreComercial }}</nombreComercial>
+    <ruc>{{ ruc }}</ruc>
+    <claveAcceso>{{ claveAcceso }}</claveAcceso>
+    <codDoc>{{ codDoc }}</codDoc>
+    <estab>{{ estab }}</estab>
+    <ptoEmi>{{ ptoEmi }}</ptoEmi>
+    <secuencial>{{ secuencial }}</secuencial>
+    <dirMatriz>{{ dirMatriz }}</dirMatriz>
+    
+  </infoTributaria>
+  <infoGuiaRemision>
+    <dirEstablecimiento>{{ dirEstablecimiento }}</dirEstablecimiento>
+    <dirPartida>{{ dirPartida }}</dirPartida>
+    <razonSocialTransportista>{{ razonSocialTransportista }}</razonSocialTransportista>
+    <tipoIdentificacionTransportista>{{ tipoIdentificacionTransportista }}</tipoIdentificacionTransportista>
+    <rucTransportista>{{ rucTransportista }}</rucTransportista>
+    <obligadoContabilidad>{{ obligadoContabilidad }}</obligadoContabilidad>
+    <fechaIniTransporte>{{ fechaIniTransporte }}</fechaIniTransporte>
+    <fechaFinTransporte>{{ fechaFinTransporte }}</fechaFinTransporte>
+    <placa>{{ placa }}</placa>
+  </infoGuiaRemision>
+  <destinatarios>
+    {% for destinatario in destinatarios: %}
+    <destinatario>
+      <identificacionDestinatario>{{ destinatario.identificacionDestinatario }}</identificacionDestinatario>
+      <razonSocialDestinatario>{{ destinatario.razonSocialDestinatario }}</razonSocialDestinatario>
+      <dirDestinatario>{{ destinatario.dirDestinatario }}</dirDestinatario>
+      <motivoTraslado>{{ destinatario.motivoTraslado }}</motivoTraslado>
+      <ruta>{{ destinatario.ruta }}</ruta>
+      <codDocSustento>{{ destinatario.codDocSustento }}</codDocSustento>
+      <numDocSustento>{{ destinatario.numDocSustento }}</numDocSustento>
+      <numAutDocSustento>{{ destinatario.numAutDocSustento }}</numAutDocSustento>
+      <fechaEmisionDocSustento>{{ destinatario.fechaEmisionDocSustento }}</fechaEmisionDocSustento>
+      <detalles>
+        {% for detalle in destinatario.detalles: %}
+        <detalle>
+          <codigoInterno>{{ detalle.codigoInterno }}</codigoInterno>
+          <codigoAdicional>{{ detalle.codigoAdicional }}</codigoAdicional>
+          <descripcion>{{ detalle.descripcion }}</descripcion>
+          <cantidad>{{ detalle.cantidad }}</cantidad>
+        </detalle>
+        {% endfor %}
+      </detalles>
+    </destinatario>
+    {% endfor %}
+  </destinatarios>
+  <infoAdicional>
+	  <campoAdicional nombre="INFORMACION">{{informacionAdicional}}</campoAdicional>
+  </infoAdicional>
+</guiaRemision>

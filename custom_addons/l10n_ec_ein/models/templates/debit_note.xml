@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notaDebito id="comprobante" version="1.0.0">
+  <infoTributaria>
+    <ambiente>{{ ambiente }}</ambiente>
+    <tipoEmision>{{ tipoEmision }}</tipoEmision>
+    <razonSocial>{{ razonSocial }}</razonSocial>
+    <nombreComercial>{{ razonSocial }}</nombreComercial>
+    <ruc>{{ ruc }}</ruc>
+    <claveAcceso>{{ claveAcceso }}</claveAcceso>
+    <codDoc>{{ codDoc }}</codDoc>
+    <estab>{{ estab }}</estab>
+    <ptoEmi>{{ ptoEmi }}</ptoEmi>
+    <secuencial>{{ secuencial }}</secuencial>
+    <dirMatriz>{{ dirMatriz }}</dirMatriz>
+  </infoTributaria>
+  <infoNotaDebito>
+    <fechaEmision>{{ fechaEmision }}</fechaEmision> {# dd/mm/aaaa #}
+    <dirEstablecimiento>{{ dirEstablecimiento }}</dirEstablecimiento>
+    <tipoIdentificacionComprador>{{ tipoIdentificacionComprador }}</tipoIdentificacionComprador>
+    <razonSocialComprador>{{ razonSocialComprador }}</razonSocialComprador>
+    <identificacionComprador>{{ identificacionComprador }}</identificacionComprador>
+    <obligadoContabilidad>{{ obligadoContabilidad }}</obligadoContabilidad>
+    <codDocModificado>{{ codDocModificado }}</codDocModificado>
+    <numDocModificado>{{ numDocModificado }}</numDocModificado>
+    <fechaEmisionDocSustento>{{ fechaEmisionDocSustento }}</fechaEmisionDocSustento>
+    <totalSinImpuestos>{{ totalSinImpuestos }}</totalSinImpuestos>
+  <impuestos>
+  {% for item in detalles %}
+    {% for tax in item['impuestos'] %}
+    <impuesto>
+      <codigo>{{ tax['codigo'] }}</codigo>
+      <codigoPorcentaje>{{ tax['codigoPorcentaje'] }}</codigoPorcentaje>
+      <tarifa>{{ tax['tarifa'] }}</tarifa>
+      <baseImponible>{{ tax['baseImponible'] }}</baseImponible>
+      <valor>{{ tax['valor'] }}</valor>
+    </impuesto>
+    {% endfor %}
+  {% endfor %}
+  </impuestos>
+   <valorTotal>{{ valorTotal }}</valorTotal>
+</infoNotaDebito>
+<motivos>
+    {% for item in motivos %}
+    <motivo>
+      <razon>{{ item['razon'] }}</razon>
+      <valor>{{ item['valor'] }}</valor>
+    </motivo>
+    {% endfor %}
+</motivos>
+ <infoAdicional>
+      <campoAdicional nombre="EMAIL">a.suin@lacolina.com.ec</campoAdicional>
+  </infoAdicional>
+</notaDebito>

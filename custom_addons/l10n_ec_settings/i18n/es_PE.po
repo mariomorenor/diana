@@ -1,0 +1,237 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_ec_configuration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20190820\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-05 14:58+0000\n"
+"PO-Revision-Date: 2020-01-05 14:58+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,help:l10n_ec_configuration.field_account_invoice__state
+msgid " * El estado 'Proforma' se usa cuando el usuario crea una nueva factura.\n"
+" * El estado 'Validada' se usa cuaando el usuario valida la factura, con lo cual adquiere un código de factura. Se mantiene en este estado hasta que el usuario pague la factura.\n"
+" * El estado 'Pagada' se establece automáticamente cuando el usuario paga completamente el monto de la factura. Las entradas de diario contable asociadas pueden o no ser conciliadas.\n"
+" * El estado 'Anulada' se usa cuando el usuario anula la factura."
+msgstr ""
+
+#. module: l10n_ec_configuration
+#: selection:account.invoice,state:0
+msgid "Anulada"
+msgstr "Anulada"
+
+#. module: l10n_ec_configuration
+#: model:ir.model,name:l10n_ec_configuration.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__create_uid
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_l10n_update_tax__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__create_date
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_l10n_update_tax__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__display_name
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_l10n_update_tax__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__serie_emision
+msgid "Emission Series"
+msgstr "Serie de emisión"
+
+#. module: l10n_ec_configuration
+#: code:addons/l10n_ec_configuration/models/invoice_point.py:47
+#, python-format
+msgid "Emission series must be 3 digits long."
+msgstr "La serie emisión debe tener 3 dígitos."
+
+#. module: l10n_ec_configuration
+#: code:addons/l10n_ec_configuration/models/invoice_point.py:62
+#, python-format
+msgid "Emissions point can not be deleted."
+msgstr "Los puntos de emisión no pueden ser eliminados."
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__serie_entidad
+msgid "Entity Series"
+msgstr "Serie de entidad"
+
+#. module: l10n_ec_configuration
+#: code:addons/l10n_ec_configuration/models/invoice_point.py:44
+#, python-format
+msgid "Entity series must be 3 digits long."
+msgstr "La serie entidad debe tener 3 dígitos."
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__id
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_l10n_update_tax__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,help:l10n_ec_configuration.field_invoice_point_fe__invoicing_start
+msgid "If you currently use an electronic invoicing application, you could set the sequence number to start from. Otherwise, the system will start from number 1 sequence."
+msgstr "Si actualmente utiliza una aplicación de facturación electrónica, puede establecer el número de secuencia para comenzar. De lo contrario, el sistema comenzará desde la secuencia número 1."
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,help:l10n_ec_configuration.field_invoice_point_fe__refound_start
+msgid "If you currently use an electronic refound application, you could set the sequence number to start from. Otherwise, the system will start from number 1 sequence."
+msgstr "Si actualmente utiliza una aplicación de refundación electrónica, puede configurar el número de secuencia para comenzar. De lo contrario, el sistema comenzará desde la secuencia número 1."
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,help:l10n_ec_configuration.field_invoice_point_fe__remission_start
+msgid "If you currently use an electronic remission guide application, you could set the sequence number to start from. Otherwise, the system will start from number 1 sequence."
+msgstr "Si actualmente usa una aplicación de guía de remisión electrónica, puede establecer el número de secuencia para comenzar. De lo contrario, el sistema comenzará desde la secuencia número 1."
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,help:l10n_ec_configuration.field_invoice_point_fe__retention_start
+msgid "If you currently use an electronic retention application, you could set the sequence number to start from. Otherwise, the system will start from number 1 sequence."
+msgstr "Si actualmente usa una aplicación de retención electrónica, puede establecer el número de secuencia para comenzar. De lo contrario, el sistema comenzará desde la secuencia número 1."
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__remission_start
+msgid "Inicio Guías. remisión"
+msgstr "Inicio Guías. remisión"
+
+#. module: l10n_ec_configuration
+#: model:ir.model,name:l10n_ec_configuration.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_account_invoice__date_invoice
+msgid "Invoice Date"
+msgstr "Fecha factura"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__invoicing_start
+msgid "Invoicing start"
+msgstr "Inicio de facturas"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_res_company__check_creation
+msgid "Is created?"
+msgstr "¿Es creado?"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__journal_id
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,help:l10n_ec_configuration.field_account_invoice__date_invoice
+msgid "Keep empty to use the current date"
+msgstr "Dejarlo vacío para utilizar la fecha actual."
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe____last_update
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_l10n_update_tax____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__write_uid
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_l10n_update_tax__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__write_date
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_l10n_update_tax__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__name_point
+msgid "Name invoice point"
+msgstr "Nombre del punto de emisión"
+
+#. module: l10n_ec_configuration
+#: selection:account.invoice,state:0
+msgid "Pagada"
+msgstr "Pagada"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_account_invoice__epayment_id
+msgid "Payment form"
+msgstr "Formulario de pago"
+
+#. module: l10n_ec_configuration
+#: selection:account.invoice,state:0
+msgid "Pro-forma"
+msgstr "Pro-forma"
+
+#. module: l10n_ec_configuration
+#: selection:account.invoice,state:0
+msgid "Proforma"
+msgstr "Proforma"
+
+#. module: l10n_ec_configuration
+#: model_terms:ir.ui.view,arch_db:l10n_ec_configuration.view_res_company_form_point_emision
+msgid "Puntos de emision"
+msgstr "Puntos de emision"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__company_id
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_res_company__invoice_point_ids
+msgid "Puntos de emisión"
+msgstr "Puntos de emisión"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__refound_start
+msgid "Refund Start"
+msgstr "Inicio notas de crédito"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_invoice_point_fe__retention_start
+msgid "Retention Start"
+msgstr "Inicio retenciones"
+
+#. module: l10n_ec_configuration
+#: model:ir.model.fields,field_description:l10n_ec_configuration.field_account_invoice__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: l10n_ec_configuration
+#: selection:account.invoice,state:0
+msgid "Validada"
+msgstr "Validada"
+
+#. module: l10n_ec_configuration
+#: code:addons/l10n_ec_configuration/models/invoice_point.py:58
+#, python-format
+msgid "You can not modify an emission point. Contact your Support Service."
+msgstr "No puede modificar un punto de emisión. Por favor contacte al Servicio de Soporte."
+
+#. module: l10n_ec_configuration
+#: model:ir.model,name:l10n_ec_configuration.model_invoice_point_fe
+msgid "invoice.point.fe"
+msgstr ""
+
+#. module: l10n_ec_configuration
+#: model:ir.model,name:l10n_ec_configuration.model_l10n_update_tax
+msgid "l10n.update.tax"
+msgstr ""
+

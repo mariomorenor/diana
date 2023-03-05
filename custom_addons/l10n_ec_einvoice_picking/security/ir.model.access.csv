@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_ec_einvoice_pikcing_stock_picking_move_reason,l10n_ec_einvoice_picking.stock_picking_move_reason,model_stock_picking_move_reason,base.group_user,1,1,1,1

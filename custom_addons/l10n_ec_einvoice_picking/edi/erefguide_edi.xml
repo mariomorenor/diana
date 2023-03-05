@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+    <record id="email_template_erefguide" model="mail.template">
+      <field name="name">Send eRefguide</field>
+      <field name="email_from">${('noresponder@sample.com')|safe}</field>
+      <field name="subject">GUÍA DE REMISIÓN ${object.company_id.name} - Nro: ${object.picking_number_total}</field>
+      <field name="partner_to">${object.partner_id.id}</field>
+      <field name="model_id" ref="stock.model_stock_picking"/>
+      <field name="auto_delete" eval="True"/>
+      <field name="report_template" ref="account_erefguide"/>
+      <field name="report_name">GUIA_${(object.name or '').replace('/','_')}</field>
+      <field name="lang">${object.partner_id.lang}</field>
+      <field name="body_html"><![CDATA[
+      <h3>Estimada/o ${ object.partner_id.name },</h3>
+      <br>
+      ${object.company_id.name}, se dirige a usted para enviarle su <b> Guía de Remisión Electrónica No. <b> ${ object.picking_number_total }</b>, con fecha de emisión ${ object.date }, disponible como documento adjunto a este correo y aprovechar la oportunidad para agradecerle profundamente la preferencia que ha mostrado por nuestros productos y servicios. <br/><br/>
+
+      <br/><br/><br/>
+      Saludos cordiales.
+      <br/><br/>
+      Departamento Bodega Entregas<br/>
+      ${object.company_id.name}<br/>
+      <br/><br/><br/>
+
+      ]]>
+      </field>
+    </record>
+
+  </data>
+</openerp>

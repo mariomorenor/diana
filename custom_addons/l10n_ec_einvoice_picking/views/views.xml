@@ -1,0 +1,62 @@
+<odoo>
+  <data>
+    <record id="view_erefguide_tree" model="ir.ui.view">
+      <field name="name">view.erefguide.tree</field>
+      <field name="model">stock.picking</field>
+      <field name="mode">extension</field>
+      <field name="inherit_id" ref="stock.vpicktree"/>
+      <field name="arch" type="xml">
+        <xpath expr="/tree/field[@name='name']" position="after">
+          <field name="picking_number_total"/>
+        </xpath>
+      </field>
+    </record>
+    <!-- Picking View -->
+    <record id="view_erefguide_form" model="ir.ui.view">
+        <field name="name">erefguide.form</field>
+        <field name="model">stock.picking</field>
+        <field name="mode">extension</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='do_print_picking']" position="before">
+              
+              <button name="do_authorize_sri" string="Autorizar Guía Electrónica"
+                      type="object"
+                      attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/>
+              <button string="Enviar Cliente"
+                            type="object"
+                            name="action_send_cliente"
+                            class="oe_highlight"
+                            attrs="{'invisible': ['|', ('sri_authorization', '==', False), ('state', 'in', ['draft'])]}"/>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="before">
+              <label for="name" string="GUIA DE REMISION " attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/>
+              <field name="picking_number_total" readonly="1" class="oe_inline" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing'),('state', '!=', 'done')]}"/>
+            </xpath>
+            <xpath expr="/form/sheet/h1" position="replace">
+              <label for="name" string="GUIA DE REMISION " attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/>
+              <field name="picking_number_total" readonly="1" class="oe_inline" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing'),('state', '!=', 'done')]}"/>
+              <br/>
+              <field name="name"/>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="before">
+              <group attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}">
+                <field name="journal_id"/>
+                <field name="picking_number" readonly="1"/>
+                <field name="invoice_number"/>
+                <field name="max_date"/>
+                <field name="reason_id"/>
+              </group>
+              <group attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}">
+                <field name="carrier_id"/>
+                <field name="carrier_plate"/>
+                <field name="route"/>
+                <field name="other_street"/>
+                <field name="dest_street" attrs="{'invisible': [('other_street', '==', False)]}"/>
+                <field name="sri_authorization" readonly="1" attrs="{'invisible':[('picking_type_code','!=','outgoing')]}"/>
+              </group>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>

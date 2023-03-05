@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <record id="view_account_eretention_form" model="ir.ui.view">
+        <field name="name">account.eretention.form</field>
+        <field name="model">account.retention</field>
+        <field name="mode">extension</field>
+        <field name="inherit_id" ref="l10n_ec_withholding.view_account_retention_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//button[@name='action_draft']" position="after">
+                <button name="action_generate_document" string="Generar Doc. Electrónica" type="object" class="oe_highlight" states="done" attrs="{'invisible': ['|', '|', ('sri_authorization', '!=', False), ('state', 'in', ['draft']), ('in_type', 'in', ('ret_out_invoice'))]}"/>
+                <button string="Enviar Cliente"
+                            type="object"
+                            name="action_send_cliente"
+                            class="oe_highlight"
+                            attrs="{'invisible': ['|', ('sri_authorization', '==', False), ('state', 'in', ['draft'])]}"/>
+		  </xpath>
+		  <xpath expr="//field[@name='to_cancel']" position="after">
+                <field name="sri_authorization" readonly="1" attrs="{'invisible':[('in_type','=','ret_out_invoice')]}"/> 
+		  </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>
